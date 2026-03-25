@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  dst-admin-go:
+    image: hujinbo23/dst-admin-go:1.3.1
+    container_name: dst-admin-go
+    restart: always
+    volumes:
+      - ./saves:/root/.klei/DoNotStarveTogether   # 游戏存档持久化
+      - ./backup:/app/backup                       # 备份文件
+      - ./mods:/app/mod                            # Mod 文件
+    ports:
+      - "8082:8082/tcp"      # Web 管理面板
+      - "10888:10888/udp"    # Steam 通信
+      - "10998:10998/udp"    # 洞穴世界
+      - "10999:10999/udp"    # 主世界
+    environment:
+      - TZ=Asia/Shanghai
